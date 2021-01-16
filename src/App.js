@@ -5,15 +5,24 @@ import {
   BrowserRouter as Router,
   Switch,
   Link
-} from 'react-router-dom'
-import LogInPage from './LogInPage'
+} from 'react-router-dom';
+import LogInPage from './LogInPage';
+import HomePage from './HomePage';
+
 function App() {
-  
+
   return (
-    <div className="App">
+    <Router>
+      <div className="App">
+          <Switch>
+            <Route path="/" component={}/>
+            <Route path="/login" component={LogInPage}/>
+            <Route path="/home" component={HomePage}/>
+            <Route path="404" component={error}/>
+          </Switch>
+      </div>
+    </Router>
       
-      <LogInPage/>
-    </div>
   );
 }
 

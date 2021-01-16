@@ -1,6 +1,8 @@
 import React from 'react'
 import './LogInPage.css'
 import {BACKEND_URL,SHOW_BUTTONS,SHOW_LOGIN,SHOW_SIGNUP} from './constants'
+import 'bootstrap/dist/css/bootstrap.css'
+
 export default class LogInPage extends React.Component{
     constructor(props){
         super(props)
@@ -32,21 +34,20 @@ export default class LogInPage extends React.Component{
                     <span>
                         <LogInForm
                         unameValue = {this.state.unameValue}
-                        uName = {this.uNameChange()}
+                        uName = {(event) => {this.setState({unameValue:event.target.value})}}
                         passValue = {this.state.passValue}
-                        pass = {this.passChange()}
+                        pass = {(event) => {this.setState({passValue:event.target.value})}}
                         />
                     </span>
-
                 )
             case SHOW_SIGNUP:
                 return (
                     <span>
                         <SignInForm
                         unameValue = {this.state.unameValue}
-                        uName = {this.uNameChange()}
+                        uName = {(event) => {this.setState({unameValue:event.target.value})}}
                         passValue = {this.state.passValue}
-                        pass = {this.passChange()}
+                        pass = {(event) => {this.setState({unameValue:event.target.value})}}
                         passConfirmValue = {this.state.confirmPassValue}/>
                     </span>
                 )
