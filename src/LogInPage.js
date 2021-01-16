@@ -1,7 +1,7 @@
 import React from 'react'
 import './LogInPage.css'
 import {BACKEND_URL,SHOW_BUTTONS,SHOW_LOGIN,SHOW_SIGNUP} from './constants'
-import 'bootstrap/dist/css/bootstrap.css'
+//import 'bootstrap/dist/css/bootstrap.css'
 import {withRouter} from 'react-router-dom'
 class LogInPage extends React.Component{
     constructor(props){
@@ -30,8 +30,8 @@ class LogInPage extends React.Component{
             case SHOW_BUTTONS:
                 return(
                     <span>
-                        <button onClick = {this.changeToLogIn}>Log In</button>
-                        <button onClick = {this.changeToSignUp}>Sign Up</button>
+                        <button type="button" className="btn btn-Dark" onClick = {this.changeToLogIn}>Log In</button>
+                        <button type="button" className="btn btn-Dark" onClick = {this.changeToSignUp}>Sign Up</button>
                     </span>
                 )
             case SHOW_LOGIN:
@@ -63,28 +63,26 @@ class LogInPage extends React.Component{
     }
     render(){
         return(
-            <div>
+            <div className ="container">
                 <nav className = "navbar navbar-inverse navbar-fixed-top">
                     <div className="container">
-                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                        <span className="sr-only">Toggle navigation</span>
-                        <span className="icon-bar"></span>
-                        <span className="icon-bar"></span>
-                        <span className="icon-bar"></span>
-                        </button>
+                        
                         <div className="navbar-header">
-                            <a href="#" className="navbar-brand">Cloud 9 Habit Builder</a>
+                            <a href="#" className="navbar-brand">Cloud9 Habit Builder</a>
                         </div>
                         <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                             <ul className="nav navbar-nav navbar-right ">
                                 <li><a href="#">Login<i className="fa fa-user-plus"></i></a></li>
                                 <li><a href="#">Sign Up<i className="fa fa-user-plus"></i></a></li>
                             </ul>
+
                         </div>
+                    {this.renderLogIn()}
+
                     </div>
                 </nav>
                     <h1>Cloud 9 Habit Builder</h1>
-                    {this.renderLogIn()}
+                    
                     <h1>Habits: What are they?</h1>
                     <p>Habits are actions you do on a regular basis. We have good habits and bad habits. 2020 was a difficult year for many people so lets make 2021 a year for improvement</p>
                     <p>Cloud 9 offers you a chance to develop new habits by keeping track of them.</p>
@@ -107,9 +105,12 @@ function LogInForm(props){
         <form>
             <div><UnameInp value = {props.unameValue} handleChange = {props.uName}/></div>
             <div><PassInp value = {props.passValue} handleChange = {props.pass} /></div>
-            <div><button id="in" onClick = {props.logIn}>Log In</button></div>
+            <div><button type="button" className="btn btn-Dark" id="in" onClick = {props.logIn}>Log In</button></div>
+            <ul className="nav navbar-nav navbar-right ">
+                <li><a href="#">Login<i className="fa fa-user"></i></a></li>
+            </ul>
         </form>
-
+    
     )
 }
 
@@ -118,12 +119,18 @@ function SignInForm(props){
         <form>
             <div><UnameInp value = {props.unameValue} handleChange = {props.uName}/></div>
             <div><PassInp value = {props.passValue} handleChange = {props.pass} /></div>
-            <div><PassInp value = {props.confirmPassValue} handleChange = {props.confirmPass} /></div>
-            <button id="up">Sign Up</button>
-        </form>
-
-    )
+            <div><ConfirmPassInp  value = {props.confirmPassValue} handleChange = {props.confirmPass} /></div>
+            <button type="button" className="btn btn-Dark" id="up">Sign Up</button>
+            <ul className="nav navbar-nav navbar-right ">
+                <li><a href="#">Sign Up<i className="fa fa-user-plus"></i></a></li>
+            </ul>
+         </form>
+        )
 }
+
+
+
+
 
 
 
