@@ -2,14 +2,15 @@ import React from 'react'
 import './LogInPage.css'
 import {BACKEND_URL,SHOW_BUTTONS,SHOW_LOGIN,SHOW_SIGNUP} from './constants'
 import 'bootstrap/dist/css/bootstrap.css'
-
-export default class LogInPage extends React.Component{
+import {withRouter} from 'react-router-dom'
+class LogInPage extends React.Component{
     constructor(props){
         super(props)
         this.state = {formStatus:SHOW_BUTTONS,passValue:'',unameValue:'',confirmPassValue:''}
         this.changeToLogIn = this.changeToLogIn.bind(this)
         this.changeToSignUp = this.changeToSignUp.bind(this)
         this.changeToShowBtns = this.changeToShowBtns.bind(this)
+        this.logIn = this.logIn.bind(this)
     }
     changeToLogIn(){
         this.setState({formStatus:SHOW_LOGIN})
@@ -19,6 +20,10 @@ export default class LogInPage extends React.Component{
     }
     changeToShowBtns(){
         this.setState({formStatus:SHOW_BUTTONS})
+    }
+    logIn(){
+        //need to insert logic to check if uname is valid or invalid
+        this.props.history.push({pathname:"/home",state:{uName:this.state.unameValue}})
     }
     renderLogIn(){
         switch (this.state.formStatus){
@@ -37,6 +42,7 @@ export default class LogInPage extends React.Component{
                         uName = {(event) => {this.setState({unameValue:event.target.value})}}
                         passValue = {this.state.passValue}
                         pass = {(event) => {this.setState({passValue:event.target.value})}}
+                        logIn = {this.logIn}
                         />
                     </span>
                 )
@@ -47,8 +53,10 @@ export default class LogInPage extends React.Component{
                         unameValue = {this.state.unameValue}
                         uName = {(event) => {this.setState({unameValue:event.target.value})}}
                         passValue = {this.state.passValue}
-                        pass = {(event) => {this.setState({unameValue:event.target.value})}}
-                        passConfirmValue = {this.state.confirmPassValue}/>
+                        pass = {(event) => {this.setState({passValue:event.target.value})}}
+                        passConfirmValue = {this.state.confirmPassValue}
+                        passConfirm = {(event) => {this.setState({passConfirmValue:event.target.value})}}
+                        />
                     </span>
                 )
         }
@@ -56,14 +64,32 @@ export default class LogInPage extends React.Component{
     render(){
         return(
             <div>
-                <h1>Cloud 9 Habit Builder</h1>
-                {this.renderLogIn()}
-                
-                <h1>Habits: What are they?</h1>
-                <p>Habits are actions you do on a regular basis. We have good habits and bad habits. 2020 was a difficult year for many people so lets make 2021 a year for improvement</p>
-                <p>Cloud 9 offers you a chance to develop new habits by keeping track of them.</p>
-                <p>The averge time to form a habit is 66 days. We will help you get there by tracking your progress.</p>
-                <p>Join us today so you can get rid of bad habits and develop good habits</p>
+                <nav className = "navbar navbar-inverse navbar-fixed-top">
+                    <div className="container">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span className="sr-only">Toggle navigation</span>
+                        <span className="icon-bar"></span>
+                        <span className="icon-bar"></span>
+                        <span className="icon-bar"></span>
+                        </button>
+                        <div className="navbar-header">
+                            <a href="#" className="navbar-brand">Cloud 9 Habit Builder</a>
+                        </div>
+                        <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                            <ul className="nav navbar-nav navbar-right ">
+                                <li><a href="#">Login<i className="fa fa-user-plus"></i></a></li>
+                                <li><a href="#">Sign Up<i className="fa fa-user-plus"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+                    <h1>Cloud 9 Habit Builder</h1>
+                    {this.renderLogIn()}
+                    <h1>Habits: What are they?</h1>
+                    <p>Habits are actions you do on a regular basis. We have good habits and bad habits. 2020 was a difficult year for many people so lets make 2021 a year for improvement</p>
+                    <p>Cloud 9 offers you a chance to develop new habits by keeping track of them.</p>
+                    <p>The averge time to form a habit is 66 days. We will help you get there by tracking your progress.</p>
+                    <p>Join us today so you can get rid of bad habits and develop good habits</p>
            </div>
             
         )
@@ -79,9 +105,9 @@ function UnameInp(props){
 function LogInForm(props){
     return (
         <form>
-            <UnameInp value = {props.unameValue} handleChange = {props.uName}/>
-            <PassInp value = {props.passValue} handleChange = {props.pass} />
-            <button id="in">Log In</button>
+            <div><UnameInp value = {props.unameValue} handleChange = {props.uName}/></div>
+            <div><PassInp value = {props.passValue} handleChange = {props.pass} /></div>
+            <div><button id="in" onClick = {props.logIn}>Log In</button></div>
         </form>
 
     )
@@ -90,9 +116,9 @@ function LogInForm(props){
 function SignInForm(props){
     return (
         <form>
-            <UnameInp value = {props.unameValue} handleChange = {props.uName}/>
-            <PassInp value = {props.passValue} handleChange = {props.pass} />
-            <PassInp value = {props.confirmPassValue} handleChange = {props.confirmPass} />
+            <div><UnameInp value = {props.unameValue} handleChange = {props.uName}/></div>
+            <div><PassInp value = {props.passValue} handleChange = {props.pass} /></div>
+            <div><PassInp value = {props.confirmPassValue} handleChange = {props.confirmPass} /></div>
             <button id="up">Sign Up</button>
         </form>
 
@@ -116,3 +142,5 @@ function ConfirmPassInp(props){
         </span>
     )
 }
+
+export default withRouter(LogInPage)

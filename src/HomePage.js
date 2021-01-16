@@ -1,7 +1,9 @@
 import React from 'react'
 import './HomePage.css'
 import {BACKEND_URL} from './constants'
-import {LINK} from 'react-router-dom'
+import {Link} from 'react-router-dom'
+import Calendar from './Calendar'
+
 export default class HomePage extends React.Component{
     constructor(props){
         super(props)
@@ -17,11 +19,32 @@ export default class HomePage extends React.Component{
     render(){
         return(
             <div id="container">
-                <h1>Cloud 9 Habit Builder</h1>
-                <button onClick={this.handleSignOut}>Sign Out</button>
+                <nav className = "navbar navbar-inverse navbar-fixed-top">
+                    <h1>Cloud 9 Habit Builder</h1>
+                    <div>
+                        <Link exact to='/'> 
+                        <button >Sign Out</button>
+                        </Link>
+                        
+                    </div>
+                </nav>
                 
+                <Calendar/>
             </div>
             
+        )
+    }
+}
+
+class Resolution extends React.Component{
+    constructor(props){
+        super(props)
+    }
+    render() {
+        return(
+            <div>
+                
+            </div>
         )
     }
 }
