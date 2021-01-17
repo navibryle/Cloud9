@@ -2,6 +2,56 @@
     margin-left: 100px;
 }
 
-.navbar.h1 {
+.navbar {
+    background-color: rgba(31, 31, 31, 0.87);
+    margin: 0, auto;
+    padding: 0;
+    position: fixed;
+    z-index: 10;
+}
+.navbar-logo{
+    font-size: 32px;
+    font-weight: bold;
     color: white;
+    padding-left: 15px;
+    -webkit-transition: .2s ease-in-out;
+        -moz-transition: .2s ease-in-out;
+            transition: .2s ease-in-out;
+    
+}
+
+.home-navbar-brand{
+    font-size: 24px !important;
+    font-weight: bold;
+    color: white;
+    -webkit-transition: .2s ease-in-out;
+        -moz-transition: .2s ease-in-out;
+            transition: .2s ease-in-out;
+    
+}
+
+.navbar-header{
+   text-align: left;
+   margin-left: 0%;
+}
+
+.btn {
+    background-color: rgb(139, 139, 139) !important;
+    color: white !important;
+    margin-left: 10px;
+    -webkit-transition: .2s ease-in-out !important;
+        -moz-transition: .2s ease-in-out !important;
+            transition: .2s ease-in-out !important;
+
+}
+
+.btn:hover {
+    background-color: rgb(90, 90, 90) !important;
+    color: #a0a0a0 !important;
+}
+
+
+.formElement{
+    padding-left: 1.5%;
+    padding-top: 1.5%;
 }

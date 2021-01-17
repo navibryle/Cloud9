@@ -3,7 +3,7 @@ import './LogInPage.css'
 import {BACKEND_URL,SHOW_BUTTONS,SHOW_LOGIN,SHOW_SIGNUP} from './constants'
 //import 'bootstrap/dist/css/bootstrap.css'
 import {withRouter,Link} from 'react-router-dom'
-import Modal from "react-responsive-modal"
+import Modal from 'react-modal';
 class LogInPage extends React.Component{
     constructor(props){
         super(props)
@@ -11,6 +11,7 @@ class LogInPage extends React.Component{
         this.changeToLogIn = this.changeToLogIn.bind(this)
         this.changeToSignUp = this.changeToSignUp.bind(this)
         this.changeToShowBtns = this.changeToShowBtns.bind(this)
+        this.hideModalHandler = this.hideModalHandler.bind(this)
         this.logIn = this.logIn.bind(this)
     }
     changeToLogIn(){
@@ -23,10 +24,12 @@ class LogInPage extends React.Component{
     }
     changeToShowBtns(){
         this.setState({formStatus:SHOW_BUTTONS})
-    }
+    }   
     logIn(){
         //need to insert logic to check if uname is valid or invalid
+
         this.props.history.push({pathname:"/home",state:{uName:this.state.unameValue}})
+        
     }
 
     showModalHandler(){
@@ -35,15 +38,14 @@ class LogInPage extends React.Component{
     hideModalHandler(){
         this.setState({showModal:false})
     }
-    
 
     renderLogIn(){
         switch (this.state.formStatus){
             case SHOW_BUTTONS:
                 return(
                     <span>
-                        <button type="button" className="btn btn-Dark" onClick = {this.changeToLogIn}>Log In</button>
-                        <button type="button" className="btn btn-Dark" onClick = {this.changeToSignUp}>Sign Up</button>
+                        <button type="button" className="btn" onClick = {this.changeToLogIn}>Log In</button>
+                        <button type="button" className="btn" onClick = {this.changeToSignUp}>Sign Up</button>
                     </span>
                 )
             case SHOW_LOGIN:
@@ -60,17 +62,15 @@ class LogInPage extends React.Component{
                 )
             case SHOW_SIGNUP:
                 return (
-                    <div>
-                    
-                            <span className="subtitle"> subtitle</span>
-                            <SignInForm
-                            unameValue = {this.state.unameValue}
-                            uName = {(event) => {this.setState({unameValue:event.target.value})}}
-                            passValue = {this.state.passValue}
-                            pass = {(event) => {this.setState({passValue:event.target.value})}}
-                            passConfirmValue = {this.state.confirmPassValue}
-                            passConfirm = {(event) => {this.setState({passConfirmValue:event.target.value})}}
-                            />
+                    <div className="signup-input">
+                        <SignInForm
+                        unameValue = {this.state.unameValue}
+                        uName = {(event) => {this.setState({unameValue:event.target.value})}}
+                        passValue = {this.state.passValue}
+                        pass = {(event) => {this.setState({passValue:event.target.value})}}
+                        passConfirmValue = {this.state.confirmPassValue}
+                        passConfirm = {(event) => {this.setState({passConfirmValue:event.target.value})}}
+                        />
                     </div>
                 )
         }
@@ -84,14 +84,8 @@ class LogInPage extends React.Component{
                         <div className="navbar-header">
                                 <a href="/" className="navbar-brand">Cloud9 Habit Builder</a>
                         </div>
-                        <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                            {/*
-                            <ul className="nav navbar-nav navbar-right ">
-                                <li><a href="#">Login<i className="fa fa-user-plus"></i></a></li>
-                                <li><a href="#">Sign Up<i className="fa fa-user-plus"></i></a></li>
-                            </ul>
-                            */}
-                        </div>
+                    
+                        
                     {this.renderLogIn()}
 
                     </div>
@@ -125,6 +119,7 @@ function UnameInp(props){
 function LogInForm(props){
     return (
         <form className = "login-input">
+            <a href="/" className="prev-btn"> &laquo; Back</a>
             <UnameInp value = {props.unameValue} handleChange = {props.uName}/>
             <PassInp value = {props.passValue} handleChange = {props.pass} />
             <button type="button" className="btn btn-Dark" id="in" onClick = {props.logIn}>Log In</button>
@@ -136,15 +131,14 @@ function LogInForm(props){
 
 function SignInForm(props){
     return (
-        <form className="center">
-            <div><UnameInp value = {props.unameValue} handleChange = {props.uName}/></div>
-            <div><PassInp value = {props.passValue} handleChange = {props.pass} /></div>
-            <div><ConfirmPassInp  value = {props.confirmPassValue} handleChange = {props.confirmPass} /></div>
+        <form className="login-input">
+            <a href="/" className="prev-btn"> &laquo; Back</a>
+            <UnameInp value = {props.unameValue} handleChange = {props.uName}/>
+            <PassInp value = {props.passValue} handleChange = {props.pass} />
+            <ConfirmPassInp  value = {props.confirmPassValue} handleChange = {props.confirmPass} />
             <button type="button" className="btn btn-Dark" id="up">Sign Up</button>
-            <ul className="nav navbar-nav navbar-right ">
-                <li><a href="#">Sign Up<i className="fa fa-user-plus"></i></a></li>
-            </ul>
          </form>
+         
         )
 }
 

@@ -6,19 +6,48 @@
     z-index: 10;
 }
 .navbar-brand{
-    font-size: 32px;
+    font-size: 24px !important;
     font-weight: bold;
     color: white;
+    -webkit-transition: .2s ease-in-out;
+        -moz-transition: .2s ease-in-out;
+            transition: .2s ease-in-out;
+    
 }
+
+.navbar-brand:hover{
+    color: grey;
+}
+
 .navbar-header{
    text-align: left;
-   margin-left: 0%;
+   margin-left: 0 !important;
 }
 .btn {
     background-color: rgb(139, 139, 139) !important;
     color: white !important;
     margin-left: 10px;
+    -webkit-transition: .2s ease-in-out !important;
+        -moz-transition: .2s ease-in-out !important;
+            transition: .2s ease-in-out !important;
 
+}
+
+.btn:hover {
+    background-color: rgb(90, 90, 90) !important;
+    color: #a0a0a0 !important;
+}
+
+
+.center{
+    background-color: rgba(153, 205, 50, 0.342);
+    position: fixed;
+    
+    margin-left: 75vw;
+    margin-top: 16px;
+    top:0;
+    left:0;
+    
 }
 
 .description {
@@ -41,20 +70,24 @@ hr{
 }
 
 
-.center{
-    position: fixed;
-    margin-left: 50vw;
-    margin-top: 50vh;
-    top:0;
-    left:0;
-    right: 0;
-    bottom: 0;
+.prev-btn {
+    text-decoration: none;
+    color: white;
+    -webkit-transition: .2s ease-in-out;
+        -moz-transition: .2s ease-in-out;
+            transition: .2s ease-in-out;
 }
 
+.prev-btn:hover {
+    color: grey;
+    text-decoration: none;
+    
+}
 .input-box {
     top: 5px;
     margin-left: 15px;
 }
+
 
 .container-fluid{
     background: url(https://evolveyourhealthpersonaltraining.com/wp-content/uploads/2019/09/Healthy-Eating-Habits-846x564.jpg);

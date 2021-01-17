@@ -9,12 +9,8 @@ const events = [{ title: "Today", date: new Date() }];
 class Calendar extends Component{
     constructor(props){
         super(props)
-        this.dateClickHandler = this.dateClickHandler.bind(this)
     }
-    dateClickHandler(event){
-        // dateStr
-        console.log(event)
-    }
+    
     render() {  
         return (  
             <div className="container">  
@@ -25,8 +21,9 @@ class Calendar extends Component{
                 </div>  
                 <FullCalendar className="calendar" 
                     defaultView="dayGridMonth"
+                    selectable={true}
                     plugins={[dayGridPlugin]}  
-                    events={events}
+                    events={this.props.events}
                     plugins={[ dayGridPlugin, interactionPlugin ]}
                     dateClick={this.props.dateClickHandler}
                 />  

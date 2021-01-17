@@ -16,9 +16,8 @@ function App() {
       <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
       <div className="App">
           <Switch>
-            <Route exact path="/" component={LogInPage}/>
             <Route exact path="/home" component={HomePage}/>
-            
+            <Route exact path="/" component={LogInPage}/>
           </Switch>
       </div>
     </Router>
