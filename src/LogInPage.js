@@ -2,7 +2,7 @@ import React from 'react'
 import './LogInPage.css'
 import {BACKEND_URL,SHOW_BUTTONS,SHOW_LOGIN,SHOW_SIGNUP} from './constants'
 //import 'bootstrap/dist/css/bootstrap.css'
-import {withRouter} from 'react-router-dom'
+import {withRouter,Link} from 'react-router-dom'
 import Modal from "react-responsive-modal"
 class LogInPage extends React.Component{
     constructor(props){
@@ -48,7 +48,7 @@ class LogInPage extends React.Component{
                 )
             case SHOW_LOGIN:
                 return (
-                    <span>
+                    <span className="loginInput">
                         <LogInForm
                         unameValue = {this.state.unameValue}
                         uName = {(event) => {this.setState({unameValue:event.target.value})}}
@@ -60,9 +60,8 @@ class LogInPage extends React.Component{
                 )
             case SHOW_SIGNUP:
                 return (
-                    <Modal open={this.state.showModal} onClose={this.showModalHandler} >
-                            <span className="center">REEEEEEEEEEEEEEEE</span>
-                            {/*
+                    <div>
+                    
                             <span className="subtitle"> subtitle</span>
                             <SignInForm
                             unameValue = {this.state.unameValue}
@@ -71,40 +70,47 @@ class LogInPage extends React.Component{
                             pass = {(event) => {this.setState({passValue:event.target.value})}}
                             passConfirmValue = {this.state.confirmPassValue}
                             passConfirm = {(event) => {this.setState({passConfirmValue:event.target.value})}}
-                            />*/}
-                    </Modal>
+                            />
+                    </div>
                 )
         }
     }
     render(){
         return(
-            <div className ="container">
-                <nav className = "navbar navbar-inverse navbar-fixed-top">
+            <div className="container-wrapper">
+                <nav className = "navbar navbar-inverse navbar-fixed-top ">
                     <div className="container">
                         
                         <div className="navbar-header">
-                            <a href="#" className="navbar-brand">Cloud9 Habit Builder</a>
+                                <a href="/" className="navbar-brand">Cloud9 Habit Builder</a>
                         </div>
                         <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                            {/*
                             <ul className="nav navbar-nav navbar-right ">
                                 <li><a href="#">Login<i className="fa fa-user-plus"></i></a></li>
                                 <li><a href="#">Sign Up<i className="fa fa-user-plus"></i></a></li>
                             </ul>
-
+                            */}
                         </div>
                     {this.renderLogIn()}
 
                     </div>
                 </nav>
-                <div className="description">
-                    <h1>Habits: What are they?</h1>
-                    <hr></hr>
-                    <p>Habits are actions you do on a regular basis. We have good habits and bad habits. 2020 was a difficult year for many people so lets make 2021 a year for improvement</p>
-                    <p>Cloud 9 offers you a chance to develop new habits by keeping track of them.</p>
-                    <p>The averge time to form a habit is 66 days. We will help you get there by tracking your progress.</p>
-                    <p>Join us today so you can get rid of bad habits and develop good habits</p>
+                <div className ="container-fluid body">
+                    <div className = "description-wrapper">
+                        <div className="description">
+                            <h1>Cloud9 Habit Developer</h1>
+                            <hr></hr>
+                            <p>Habits are actions you do on a regular basis. We have good habits and bad habits. 2020 was a difficult year for many people so lets make 2021 a year for improvement</p>
+                            <p>Cloud 9 offers you a chance to develop new habits by keeping track of them.</p>
+                            <p>The averge time to form a habit is 66 days. We will help you get there by tracking your progress.</p>
+                            <p>Join us today so you can get rid of bad habits and develop good habits</p>
+                        </div>
+                    </div>
+                    
                 </div>
-           </div>
+            </div>
+            
             
         )
     }
@@ -118,13 +124,11 @@ function UnameInp(props){
 }
 function LogInForm(props){
     return (
-        <form>
-            <div><UnameInp value = {props.unameValue} handleChange = {props.uName}/></div>
-            <div><PassInp value = {props.passValue} handleChange = {props.pass} /></div>
-            <div><button type="button" className="btn btn-Dark" id="in" onClick = {props.logIn}>Log In</button></div>
-            <ul className="nav navbar-nav navbar-right ">
-                <li><a href="#">Login<i className="fa fa-user"></i></a></li>
-            </ul>
+        <form className = "login-input">
+            <UnameInp value = {props.unameValue} handleChange = {props.uName}/>
+            <PassInp value = {props.passValue} handleChange = {props.pass} />
+            <button type="button" className="btn btn-Dark" id="in" onClick = {props.logIn}>Log In</button>
+            
         </form>
     
     )
@@ -148,7 +152,7 @@ function SignInForm(props){
 function PassInp(props){
     return(
         <span className = "input-box">
-            <input value = {props.value} onChange={props.handleChange} placeholder={"password"}/>
+            <input type="password" value = {props.value} onChange={props.handleChange} placeholder={"password"}/>
         </span>
     )
 }
@@ -156,7 +160,7 @@ function PassInp(props){
 function ConfirmPassInp(props){
     return(
         <span className = "input-box">
-            <input value = {props.value} onChange={props.handleChange} placeholder={"confirm password"}/>
+            <input type="password" value = {props.value} onChange={props.handleChange} placeholder={"confirm password"}/>
         </span>
     )
 }

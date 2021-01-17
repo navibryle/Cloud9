@@ -9,7 +9,6 @@ export default class HomePage extends React.Component{
         super(props)
         this.handleSignOut = this.handleSignOut.bind(this);
     }
-
     handleSignOut() {
 
         this.props.handleSignOut();
@@ -22,14 +21,14 @@ export default class HomePage extends React.Component{
                 <nav className = "navbar navbar-inverse navbar-fixed-top">
                     <h1>Cloud9 Habit Builder</h1>
                     <div>
-                        <Link exact to='/'> 
-                        <button type="button" className="btn btn-Dark">Sign Out</button>
+                        <Link exact to='/'>
+                            <button type="button" className="btn btn-Dark">Sign Out</button>
                         </Link>
                         
                     </div>
                 </nav>
                 
-                <Calendar/>
+                <Calendar />
             </div>
             
         )
@@ -43,9 +42,9 @@ class Resolution extends React.Component{
     render() {
         return(
             <div>
-                <button type="button" class="btn btn-success">Add a Habit +</button>
-                
-                
+                <button type="button" class="btn btn-success">
+                    Add a Habit 
+                </button>
             </div>
         )
     }
