@@ -20,10 +20,10 @@ export default class HomePage extends React.Component{
         return(
             <div id="container">
                 <nav className = "navbar navbar-inverse navbar-fixed-top">
-                    <h1>Cloud 9 Habit Builder</h1>
+                    <h1>Cloud9 Habit Builder</h1>
                     <div>
                         <Link exact to='/'> 
-                        <button >Sign Out</button>
+                        <button type="button" className="btn btn-Dark">Sign Out</button>
                         </Link>
                         
                     </div>
@@ -43,6 +43,8 @@ class Resolution extends React.Component{
     render() {
         return(
             <div>
+                <button type="button" class="btn btn-success">Add a Habit +</button>
+                
                 
             </div>
         )

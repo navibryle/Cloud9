@@ -4,7 +4,6 @@ import {
   Route,
   BrowserRouter as Router,
   Switch,
-  Link
 } from 'react-router-dom';
 import LogInPage from './LogInPage';
 import HomePage from './HomePage';

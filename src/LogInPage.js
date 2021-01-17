@@ -3,10 +3,11 @@ import './LogInPage.css'
 import {BACKEND_URL,SHOW_BUTTONS,SHOW_LOGIN,SHOW_SIGNUP} from './constants'
 //import 'bootstrap/dist/css/bootstrap.css'
 import {withRouter} from 'react-router-dom'
+import Modal from "react-responsive-modal"
 class LogInPage extends React.Component{
     constructor(props){
         super(props)
-        this.state = {formStatus:SHOW_BUTTONS,passValue:'',unameValue:'',confirmPassValue:''}
+        this.state = {formStatus:SHOW_BUTTONS,passValue:'',unameValue:'',confirmPassValue:'',showModal:false}
         this.changeToLogIn = this.changeToLogIn.bind(this)
         this.changeToSignUp = this.changeToSignUp.bind(this)
         this.changeToShowBtns = this.changeToShowBtns.bind(this)
@@ -16,7 +17,9 @@ class LogInPage extends React.Component{
         this.setState({formStatus:SHOW_LOGIN})
     }
     changeToSignUp(){
+        this.showModalHandler()
         this.setState({formStatus:SHOW_SIGNUP})
+        
     }
     changeToShowBtns(){
         this.setState({formStatus:SHOW_BUTTONS})
@@ -25,6 +28,15 @@ class LogInPage extends React.Component{
         //need to insert logic to check if uname is valid or invalid
         this.props.history.push({pathname:"/home",state:{uName:this.state.unameValue}})
     }
+
+    showModalHandler(){
+        this.setState({showModal:true})
+    }
+    hideModalHandler(){
+        this.setState({showModal:false})
+    }
+    
+
     renderLogIn(){
         switch (this.state.formStatus){
             case SHOW_BUTTONS:
@@ -48,16 +60,19 @@ class LogInPage extends React.Component{
                 )
             case SHOW_SIGNUP:
                 return (
-                    <span>
-                        <SignInForm
-                        unameValue = {this.state.unameValue}
-                        uName = {(event) => {this.setState({unameValue:event.target.value})}}
-                        passValue = {this.state.passValue}
-                        pass = {(event) => {this.setState({passValue:event.target.value})}}
-                        passConfirmValue = {this.state.confirmPassValue}
-                        passConfirm = {(event) => {this.setState({passConfirmValue:event.target.value})}}
-                        />
-                    </span>
+                    <Modal open={this.state.showModal} onClose={this.showModalHandler} >
+                            <span className="center">REEEEEEEEEEEEEEEE</span>
+                            {/*
+                            <span className="subtitle"> subtitle</span>
+                            <SignInForm
+                            unameValue = {this.state.unameValue}
+                            uName = {(event) => {this.setState({unameValue:event.target.value})}}
+                            passValue = {this.state.passValue}
+                            pass = {(event) => {this.setState({passValue:event.target.value})}}
+                            passConfirmValue = {this.state.confirmPassValue}
+                            passConfirm = {(event) => {this.setState({passConfirmValue:event.target.value})}}
+                            />*/}
+                    </Modal>
                 )
         }
     }
@@ -81,13 +96,14 @@ class LogInPage extends React.Component{
 
                     </div>
                 </nav>
-                    <h1>Cloud 9 Habit Builder</h1>
-                    
+                <div className="description">
                     <h1>Habits: What are they?</h1>
+                    <hr></hr>
                     <p>Habits are actions you do on a regular basis. We have good habits and bad habits. 2020 was a difficult year for many people so lets make 2021 a year for improvement</p>
                     <p>Cloud 9 offers you a chance to develop new habits by keeping track of them.</p>
                     <p>The averge time to form a habit is 66 days. We will help you get there by tracking your progress.</p>
                     <p>Join us today so you can get rid of bad habits and develop good habits</p>
+                </div>
            </div>
             
         )
@@ -116,7 +132,7 @@ function LogInForm(props){
 
 function SignInForm(props){
     return (
-        <form>
+        <form className="center">
             <div><UnameInp value = {props.unameValue} handleChange = {props.uName}/></div>
             <div><PassInp value = {props.passValue} handleChange = {props.pass} /></div>
             <div><ConfirmPassInp  value = {props.confirmPassValue} handleChange = {props.confirmPass} /></div>
@@ -127,11 +143,6 @@ function SignInForm(props){
          </form>
         )
 }
-
-
-
-
-
 
 
 function PassInp(props){
