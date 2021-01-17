@@ -2,10 +2,19 @@
 //import "@fullcalendar/daygrid/main.css";  
 import FullCalendar from "@fullcalendar/react";  
 import dayGridPlugin from "@fullcalendar/daygrid"; 
+import interactionPlugin from "@fullcalendar/interaction"; // needed for dayClick
 
 import React, { Component } from 'react'  
 const events = [{ title: "Today", date: new Date() }];  
-class Calendar extends Component{  
+class Calendar extends Component{
+    constructor(props){
+        super(props)
+        this.dateClickHandler = this.dateClickHandler.bind(this)
+    }
+    dateClickHandler(event){
+        // dateStr
+        console.log(event)
+    }
     render() {  
         return (  
             <div className="container">  
@@ -14,10 +23,12 @@ class Calendar extends Component{
                         Calendar
                </div>  
                 </div>  
-                <FullCalendar  
-                    defaultView="dayGridMonth"  
+                <FullCalendar className="calendar" 
+                    defaultView="dayGridMonth"
                     plugins={[dayGridPlugin]}  
-                    events={events}  
+                    events={events}
+                    plugins={[ dayGridPlugin, interactionPlugin ]}
+                    dateClick={this.props.dateClickHandler}
                 />  
             </div>  
         )  
